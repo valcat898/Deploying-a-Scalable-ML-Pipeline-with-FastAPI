@@ -21,8 +21,8 @@ task to determine whether a person makes over $50k a year.
 
 ## Evaluation Data
 
-The dataset contains a total of 48,842 instances. The training set consists of 32,561 instances and the test set consists of 
-16,281 instances, which means that 66.67% of the data was used for training and 33.33% of data was used for testing. 
+The dataset contains a total of 32,561 instances. The training set consists of 26,048 instances and the test set consists of 
+6,513 instances, which means that 80% of the data was used for training and 20% of data was used for testing. 
 
 ## Metrics
 
