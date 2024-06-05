@@ -43,7 +43,7 @@ def test_test_dataset_size():
 # TODO: implement the third test. Change the function name and input as needed
 def test_training_dataset_type():
     """
-    # This test checks if the data type of the training datatype matched the expected data type. 
+    # This test checks if the data type of the training datatype matched the expected data type.
     """
     # Your code here
     project_path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"

@@ -26,25 +26,27 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
-path = # TODO: enter the path for the saved encoder 
+
+path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI/model/encoder.pk1" # TODO: enter the path for the saved encoder 
 encoder = load_model(path)
 
-path = # TODO: enter the path for the saved model 
+path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI/model/model.pk1" # TODO: enter the path for the saved model 
 model = load_model(path)
 
 # TODO: create a RESTful API using FastAPI
-app = # your code here
+app = FastAPI()
 
 # TODO: create a GET on the root giving a welcome message
 @app.get("/")
 async def get_root():
     """ Say hello!"""
+    return {"message": "Hello!"}
     # your code here
     pass
 
 
 # TODO: create a POST on a different path that does model inference
-@app.post("/data/")
+@app.post("/inference/")
 async def post_inference(data: Data):
     # DO NOT MODIFY: turn the Pydantic model into a dict.
     data_dict = data.dict()
@@ -66,9 +68,13 @@ async def post_inference(data: Data):
     ]
     data_processed, _, _, _ = process_data(
         # your code here
+        data_df, 
+        categorical_features=cat_features, 
+        training=False
+
         # use data as data input
         # use training = False
         # do not need to pass lb as input
     )
-    _inference = # your code here to predict the result using data_processed
+    _inference = model.predict(data_processed) # your code here to predict the result using data_processed
     return {"result": apply_label(_inference)}
