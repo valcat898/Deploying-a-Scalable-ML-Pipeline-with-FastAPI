@@ -27,10 +27,10 @@ class Data(BaseModel):
     native_country: str = Field(..., example="United-States", alias="native-country")
 
 
-path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI/model/encoder.pk1" # TODO: enter the path for the saved encoder 
+path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI/model/encoder.pkl" # TODO: enter the path for the saved encoder 
 encoder = load_model(path)
 
-path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI/model/model.pk1" # TODO: enter the path for the saved model 
+path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI/model/model.pkl" # TODO: enter the path for the saved model 
 model = load_model(path)
 
 # TODO: create a RESTful API using FastAPI
@@ -40,13 +40,13 @@ app = FastAPI()
 @app.get("/")
 async def get_root():
     """ Say hello!"""
-    return {"message": "Hello!"}
+    return {"Welcome to the API model!"}
     # your code here
     pass
 
 
 # TODO: create a POST on a different path that does model inference
-@app.post("/inference/")
+@app.post("/data/")
 async def post_inference(data: Data):
     # DO NOT MODIFY: turn the Pydantic model into a dict.
     data_dict = data.dict()
@@ -68,13 +68,14 @@ async def post_inference(data: Data):
     ]
     data_processed, _, _, _ = process_data(
         # your code here
-        data_df, 
+        X=data, 
         categorical_features=cat_features, 
-        training=False
+        training=False, 
+        encoder=encoder
 
         # use data as data input
         # use training = False
         # do not need to pass lb as input
     )
-    _inference = model.predict(data_processed) # your code here to predict the result using data_processed
-    return {"result": apply_label(_inference)}
+    _inference = inference(model, data_processed) # your code here to predict the result using data_processed
+    return {apply_label(_inference)}
