@@ -10,8 +10,7 @@ def test_training_dataset_size():
     # This test checks if the training dataset is the correct size. 
     """
     # Your code here
-    project_path = "/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
-    data_path = os.path.join(project_path, "data", "census.csv")
+    data_path = './data/census.csv'
     data = pd.read_csv(data_path)
     train, test = train_test_split(data, test_size=0.2, random_state=42)
 
@@ -28,8 +27,7 @@ def test_test_dataset_size():
     # This test checks if the testing dataset is the correct size. 
     """
     # Your code here
-    project_path = "/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
-    data_path = os.path.join(project_path, "data", "census.csv")
+    data_path = './data/census.csv'
     data = pd.read_csv(data_path)
     train, test = train_test_split(data, test_size=0.2, random_state=42)
 
@@ -46,8 +44,7 @@ def test_training_dataset_type():
     # This test checks if the data type of the training datatype matched the expected data type.
     """
     # Your code here
-    project_path = "/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
-    data_path = os.path.join(project_path, "data", "census.csv")
+    data_path = "./data/census.csv"
     data = pd.read_csv(data_path)
     train, test = train_test_split(data, test_size=0.2, random_state=42)
 
